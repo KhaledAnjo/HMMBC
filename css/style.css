@@ -1,0 +1,1229 @@
+/* =====================================================================
+   HM²BC — Design System (Premium SaaS Edition)
+   خطوط محلية (offline) بدل @import + إصلاح اتجاه RTL/LTR
+   ===================================================================== */
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../vendor/fonts/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../vendor/fonts/Tajawal-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../vendor/fonts/Inter_18pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../vendor/fonts/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --color-primary: #F97316;
+  --color-primary-dark: #C2410C;
+  --color-primary-light: #FFEDD5;
+  --color-primary-lighter: #FFFBF7;
+
+  --color-white: #FFFFFF;
+  --color-bg: #F9FAFB;
+
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+
+  --color-border: rgba(17, 24, 39, 0.08);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 12px 32px rgba(249, 115, 22, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --focus-ring: 0 0 0 4px rgba(249, 115, 22, 0.15);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Tajawal', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* بوضع عربي (RTL)، نفضّل Tajawal كخط أساسي للقراءة */
+[dir="rtl"] body {
+  font-family: 'Tajawal', 'Inter', sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------------------------------------------------------------- */
+/* Layout & Header */
+/* ---------------------------------------------------------------- */
+.app-header {
+  padding: 24px 16px;
+  text-align: center;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+.app-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+/* ---------------------------------------------------------------- */
+/* زر تبديل اللغة */
+/* ---------------------------------------------------------------- */
+.lang-toggle-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+[dir="rtl"] .lang-toggle-btn {
+  left: auto;
+  right: 20px;
+}
+.lang-toggle-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------------------------------------- */
+/* Splash Screen */
+/* ---------------------------------------------------------------- */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-primary), #EA580C);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: opacity 0.6s ease;
+}
+.splash-fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+.splash-logo {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  animation: splashPulse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+@keyframes splashPulse {
+  from { transform: scale(1); opacity: 0.9; filter: drop-shadow(0 0 10px rgba(255,255,255,0)); }
+  to   { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 4px 20px rgba(255,255,255,0.2)); }
+}
+.splash-tagline {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* ---------------------------------------------------------------- */
+/* Landing Page */
+/* ---------------------------------------------------------------- */
+.landing-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 16px;
+  background: var(--color-bg);
+  opacity: 0;
+}
+.landing-fade-in {
+  animation: landingFadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes landingFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.landing-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.landing-logo {
+  color: var(--color-primary);
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.landing-header h1 {
+  margin: 0 0 16px;
+  font-size: 2.5rem;
+  color: var(--color-text);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.landing-subtitle {
+  margin: 0 auto;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.cards-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 900px;
+}
+.building-card {
+  width: 260px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+.building-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(249, 115, 22, 0.3);
+  box-shadow: var(--shadow-md);
+}
+.building-card.selected {
+  border-color: var(--color-primary);
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-primary-lighter) 100%);
+  box-shadow: var(--focus-ring);
+}
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-text);
+}
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------- */
+/* شريط أدوات المشروع */
+/* ---------------------------------------------------------------- */
+.project-toolbar {
+  max-width: 700px;
+  margin: 0 auto 32px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------------------- */
+/* أقسام الـ Wizard */
+/* ---------------------------------------------------------------- */
+.wizard-section {
+  max-width: 700px;
+  margin: 0 auto 32px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-sm);
+  animation: sectionFadeIn 0.5s ease-out;
+}
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-title {
+  color: var(--color-text);
+  margin: 0 0 24px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 600px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .wizard-section { padding: 24px 20px; }
+}
+
+/* ---------------------------------------------------------------- */
+/* عناصر الفورم */
+/* ---------------------------------------------------------------- */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.required {
+  color: var(--color-primary);
+  margin-right: 4px;
+}
+[dir="ltr"] .required {
+  margin-right: 0;
+  margin-left: 4px;
+}
+.unit-hint {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  font-size: 0.8rem;
+  margin-right: 6px;
+}
+[dir="ltr"] .unit-hint {
+  margin-right: 0;
+  margin-left: 6px;
+}
+.field-group input,
+.field-group select {
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--color-text);
+  transition: var(--transition-smooth);
+}
+.field-group input:focus,
+.field-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
+}
+.field-group.has-error input,
+.field-group.has-error select {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+.field-error {
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.hint-text {
+  font-size: 0.85rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+  background: var(--color-bg);
+  border-left: 3px solid var(--color-primary);
+  padding: 12px 16px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+[dir="rtl"] .hint-text {
+  border-left: none;
+  border-right: 3px solid var(--color-primary);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+.notice-box {
+  background: var(--color-primary-lighter);
+  border: 1px solid var(--color-primary-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  color: var(--color-primary-dark);
+}
+
+/* ---------------------------------------------------------------- */
+/* أزرار الاختيار */
+/* ---------------------------------------------------------------- */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.btn-choice {
+  padding: 10px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: var(--transition-smooth);
+}
+.btn-choice:hover {
+  border-color: var(--color-text-muted);
+  background: var(--color-bg);
+}
+.btn-choice.active {
+  background: var(--color-primary-lighter);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary);
+  font-weight: 700;
+}
+.price-hint {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-right: 6px;
+  font-weight: 400;
+}
+[dir="ltr"] .price-hint {
+  margin-right: 0;
+  margin-left: 6px;
+}
+
+/* ---------------------------------------------------------------- */
+/* مفتاح تشغيل/إطفاء — مصلّح لدعم RTL و LTR */
+/* ---------------------------------------------------------------- */
+.toggle-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  background: var(--color-white);
+  transition: var(--transition-smooth);
+}
+.toggle-row:hover {
+  border-color: var(--color-text-muted);
+}
+.toggle-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.toggle-switch {
+  width: 48px;
+  height: 26px;
+  border-radius: 999px;
+  background: #d1d5db;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+/* الوضع الافتراضي (RTL): الدائرة تبدأ يمين */
+.toggle-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-white);
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.toggle-switch.active {
+  background: var(--color-primary);
+}
+/* RTL: تتحرك الدائرة لليسار عند التفعيل */
+[dir="rtl"] .toggle-switch.active::after {
+  transform: translateX(-22px);
+}
+/* LTR: نعكس المكان الابتدائي (تبدأ يسار) وتتحرك لليمين عند التفعيل */
+[dir="ltr"] .toggle-switch::after {
+  right: auto;
+  left: 3px;
+}
+[dir="ltr"] .toggle-switch.active::after {
+  transform: translateX(22px);
+}
+
+/* ---------------------------------------------------------------- */
+/* الأزرار الأساسية */
+/* ---------------------------------------------------------------- */
+.wizard-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), #EA580C);
+  color: var(--color-white);
+  border: none;
+  padding: 12px 28px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+  transition: var(--transition-smooth);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.35);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+.btn-outline:hover {
+  border-color: var(--color-text-muted);
+  background: var(--color-bg);
+}
+.btn-outline:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.btn-full {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+}
+.section-locked {
+  opacity: 0.5;
+  pointer-events: none;
+  filter: grayscale(100%);
+}
+
+/* ---------------------------------------------------------------- */
+/* قسم المراجعة */
+/* ---------------------------------------------------------------- */
+.review-section {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.review-section h3 {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+  color: var(--color-text);
+  font-weight: 700;
+}
+.review-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(17, 24, 39, 0.1);
+  font-size: 0.9rem;
+}
+.review-row:last-child {
+  border-bottom: none;
+}
+.review-label {
+  color: var(--color-text-muted);
+}
+.review-value {
+  font-weight: 600;
+  color: var(--color-text);
+}
+.grand-total-row {
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px solid var(--color-border);
+  color: var(--color-primary-dark);
+}
+
+/* ---------------------------------------------------------------- */
+/* التبويبات والجدول — مصلّح لمحاذاة تلقائية حسب اللغة */
+/* ---------------------------------------------------------------- */
+.results-section {
+  max-width: 800px;
+}
+.tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 24px;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+.tab-btn:hover {
+  color: var(--color-text);
+}
+.tab-btn.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: 700;
+}
+.tab-panel {
+  display: none;
+}
+.tab-panel.active {
+  display: block;
+  animation: sectionFadeIn 0.4s ease;
+}
+
+.materials-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+.materials-table th,
+.materials-table td {
+  padding: 14px 16px;
+  text-align: right; /* الافتراضي: عربي (RTL) */
+  border-bottom: 1px solid var(--color-border);
+}
+[dir="ltr"] .materials-table th,
+[dir="ltr"] .materials-table td {
+  text-align: left;
+}
+.materials-table th {
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+.materials-table tr:last-child td {
+  border-bottom: none;
+}
+.materials-table tfoot td {
+  font-weight: 700;
+  background: var(--color-primary-lighter);
+  color: var(--color-primary-dark);
+  border-top: 2px solid var(--color-primary-light);
+}
+
+/* ---------------------------------------------------------------- */
+/* مقارنة المقاول & Badges */
+/* ---------------------------------------------------------------- */
+.contractor-field input {
+  margin-top: 8px;
+}
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+.status-green {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+.status-yellow {
+  background: #fef9c3;
+  color: #854d0e;
+  border: 1px solid #fef08a;
+}
+.status-red {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* ---------------------------------------------------------------- */
+/* إعدادات الخلفية المتحركة */
+/* ---------------------------------------------------------------- */
+#dynamic-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* عشان تضل ورا كل الكروت والمحتوى */
+  background: var(--color-bg); /* لون الخلفية الأساسي */
+  overflow: hidden;
+  pointer-events: none; /* عشان ما تأثر على الكبسات */
+}
+
+/* ---------------------------------------------------------------- */
+/* Splash Screen (تأثير زجاجي واختفاء Smooth) */
+/* ---------------------------------------------------------------- */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  /* خلفية شبه شفافة مع بلور لتعطي تأثير الـ Glassmorphism */
+  background: rgba(249, 115, 22, 0.95);
+  backdrop-filter: blur(10px);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  /* الانتقال صار يشمل الشفافية، والبلور، والحجم */
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              backdrop-filter 0.8s ease;
+}
+
+.splash-fade-out {
+  opacity: 0;
+  transform: scale(1.05); /* بتكبر شوي وهي بتختفي (تأثير سينمائي) */
+  backdrop-filter: blur(0px);
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* تفاعل الكبسات (Smooth & Bouncy) */
+/* ---------------------------------------------------------------- */
+.btn-primary, .btn-outline, .btn-choice, .building-card {
+  /* توحيد سرعة الانتقال لكل التفاعلات */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* لما تضغط على الزر (Click/Active) بينزل لتحت شوي كأنه زر حقيقي */
+.btn-primary:active, .btn-outline:active {
+  transform: scale(0.96) !important;
+}
+
+.building-card:active {
+  transform: scale(0.98);
+}
+/* ================================================================ */
+/* إضافات النسخة المحدثة                                             */
+/* ================================================================ */
+
+/* ---------- مؤشر التقدم اللاصق (1→2→3→4) ---------- */
+.progress-indicator {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin: 0 auto 16px;
+  max-width: 720px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.progress-dot {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  color: var(--color-text-muted);
+  transition: var(--transition-smooth);
+}
+.progress-label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+.progress-step.current .progress-dot {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--focus-ring);
+}
+.progress-step.current .progress-label { color: var(--color-primary-dark); }
+.progress-step.completed .progress-dot {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+.progress-line {
+  width: 24px;
+  height: 2px;
+  background: var(--color-border);
+  border-radius: 2px;
+}
+@media (max-width: 600px) {
+  .progress-label { display: none; }
+}
+
+/* ---------- زر تعديل الأقسام المقفلة ---------- */
+.wizard-section { position: relative; }
+.btn-edit-section {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-primary);
+  background: #fff;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  /* القسم المقفول عليه pointer-events:none — نرجّعها للزر حتى يشتغل */
+  pointer-events: auto;
+  filter: none;
+  opacity: 1;
+}
+.btn-edit-section:hover {
+  background: var(--color-primary-light);
+}
+.section-locked .btn-edit-section {
+  pointer-events: auto;
+}
+
+/* ---------- أنيميشن نجاح "تم" (checkmark بيرسم حاله) ---------- */
+.btn-done {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.check-svg {
+  width: 20px;
+  height: 20px;
+}
+.check-svg path {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: drawCheck 0.5s ease forwards;
+}
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ---------- زر أثناء التحميل (توليد PDF) ---------- */
+.btn-loading {
+  opacity: 0.7;
+  cursor: progress;
+  animation: pulseLoading 1.2s ease-in-out infinite;
+}
+@keyframes pulseLoading {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.45; }
+}
+
+/* ---------- صفحة إعدادات الأسعار ---------- */
+.price-settings-panel {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+  margin: 0 auto 24px;
+  max-width: 720px;
+}
+.price-settings-header h3 {
+  margin: 0 0 4px;
+  color: var(--color-primary-dark);
+}
+.price-settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+  margin: 16px 0;
+}
+@media (max-width: 600px) {
+  .price-settings-grid { grid-template-columns: 1fr; }
+}
+.price-setting-row label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.price-setting-row.modified label { color: var(--color-primary-dark); }
+.price-setting-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.price-setting-input input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+}
+.price-settings-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ---------- "كيف حسبنا هذا الرقم؟" ---------- */
+.calc-toggle-btn {
+  margin-inline-start: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary);
+  background: #fff;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  vertical-align: middle;
+}
+.calc-toggle-btn:hover,
+.calc-toggle-btn.active {
+  background: var(--color-primary);
+  color: #fff;
+}
+.calc-detail-row td {
+  background: var(--color-primary-lighter);
+  font-size: 0.85rem;
+}
+.calc-detail-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 2px;
+  direction: rtl;
+}
+[dir="ltr"] .calc-detail-box { direction: ltr; }
+.calc-source {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+.qty-range {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- تكلفة المتر المربع ---------- */
+.cost-per-sqm-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--color-primary-lighter), #fff);
+  border: 1px solid var(--color-primary-light);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+.cost-per-sqm-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+.cost-per-sqm-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  direction: ltr;
+}
+
+/* ---------- صناديق التنويه ---------- */
+.not-included-box,
+.disclaimer-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 16px 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.sources-line {
+  margin-top: 8px;
+  font-size: 0.8rem;
+}
+
+/* ---------- جداول قابلة للتمرير أفقياً على الموبايل ---------- */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-scroll .materials-table { min-width: 560px; }
+
+/* ---------- حقل مقارنة المقاول مع مبدّل الوحدة ---------- */
+.contractor-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+.contractor-input-row input { flex: 1; }
+.unit-select {
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font-weight: 600;
+  min-width: 80px;
+}
+.fixed-unit { min-width: 48px; text-align: center; }
+
+/* ================================================================ */
+/* Print CSS — نسخة طباعة نظيفة (بديل سريع عن الـ PDF أحياناً)        */
+/* ================================================================ */
+@media print {
+  #dynamic-bg,
+  .lang-toggle-btn,
+  .project-toolbar,
+  .progress-indicator,
+  .price-settings-panel,
+  .btn-done,
+  .btn-edit-section,
+  .btn-primary,
+  .btn-outline,
+  .calc-toggle-btn,
+  .tabs-nav,
+  #wizard-root {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+  }
+  #results-root {
+    display: block !important;
+  }
+  .wizard-section,
+  .results-section {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  /* بالطباعة: نعرض كل التبويبات ورا بعض بدل تبويب واحد */
+  .tab-panel {
+    display: block !important;
+    page-break-inside: avoid;
+    margin-bottom: 24px;
+  }
+  .calc-detail-row { display: table-row !important; }
+  .calc-detail-row.hidden { display: none !important; }
+  a { text-decoration: none; color: inherit; }
+}
+
+/* =====================================================================
+   الكراج (Garage) — بلوك القسم 1
+   ===================================================================== */
+.subsection-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 22px 0 10px;
+  color: var(--color-text, #1a1a1a);
+}
+
+.garage-block,
+.pool-block {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #ffd9b3;
+  border-radius: 12px;
+  background: #fffaf5;
+}
+
+.garage-required-note {
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.garage-info-box,
+.pool-info-box {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* =====================================================================
+   دليل المقاولين (Contractors Directory)
+   ===================================================================== */
+.contractors-directory-panel {
+  margin: 16px 0;
+  padding: 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.mock-data-banner {
+  background: #fff8e1;
+  border: 1px solid #ffd54f;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.cd-filters {
+  margin-top: 14px;
+}
+
+.cd-count {
+  margin: 14px 0 8px;
+}
+
+.contractors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.contractor-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fcfcfc;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.contractor-card:hover {
+  border-color: #ff8a2b;
+  transform: translateY(-2px);
+}
+
+.contractor-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.contractor-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.contractor-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #f0f0f0;
+  color: #444;
+  white-space: nowrap;
+}
+
+.contractor-badge.cat-1 { background: #e8f5e9; color: #2e7d32; }
+.contractor-badge.cat-2 { background: #e3f2fd; color: #1565c0; }
+.contractor-badge.cat-3 { background: #fff3e0; color: #ef6c00; }
+.contractor-badge.cat-4 { background: #f3e5f5; color: #6a1b9a; }
+.contractor-badge.cat-5 { background: #eceff1; color: #455a64; }
+
+.contractor-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.contractor-scope {
+  margin-top: 8px;
+  font-size: 0.8rem;
+}
+
+.registry-contact-box {
+  margin-top: 16px;
+  background: #f5f9ff;
+  border: 1px solid #bbdefb;
+}
+
+.registry-body {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #cfd8dc;
+  line-height: 1.9;
+}
+
+.cd-placeholder-warn {
+  margin-top: 12px;
+  color: #b26a00;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .contractors-grid { grid-template-columns: 1fr; }
+}
+
+/* أثناء تصدير الـ PDF: نعرض كل التبويبات ورا بعض (زي الطباعة)
+   حتى ما يطلع بالـ PDF التبويب النشط بس */
+.export-all-tabs .tab-panel {
+  display: block !important;
+  margin-bottom: 24px;
+}
+.export-all-tabs .tabs-nav {
+  display: none !important;
+}
