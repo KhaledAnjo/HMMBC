@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HM²BC — How Much My Building Cost?</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+
+  <!-- الخلفية الديناميكية -->
+  <div id="dynamic-bg">
+      <svg id="landscape" height="100%" width="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polygon id="mountain-1" points="0,100 100,100" style="fill-rule:evenodd;" />
+          <polygon id="mountain-2" points="0,100 100,100" style="fill-rule:evenodd;" />
+          <polygon id="mountain-3" points="0,100 100,100" style="fill-rule:evenodd;" />
+          <polygon id="mountain-4" points="0,100 100,100" style="fill-rule:evenodd;" />
+      </svg>
+  </div>
+
+    <!-- ============================================================ -->
+    <!-- 1) Splash Screen — يظهر أول شي وبيختفي لحاله بعد ثانيتين     -->
+    <!-- ============================================================ -->
+    <div id="splash-screen">
+      <div class="splash-logo">HM²BC</div>
+      <p class="splash-tagline" data-i18n="splashTagline">How Much My Building Cost?</p>
+    </div>
+
+    <!-- زر تبديل اللغة (ثابت بأعلى الصفحة) -->
+    <button id="lang-toggle" class="lang-toggle-btn" type="button">English</button>
+
+    <!-- ============================================================ -->
+    <!-- 2) Landing Page — 3 بطاقات اختيار نوع المبنى                -->
+    <!-- ============================================================ -->
+    <section id="landing" class="landing-section hidden">
+      <div class="landing-header">
+        <div class="landing-logo">HM²BC</div>
+        <h1 data-i18n="landingTitle">How Much My Building Cost?</h1>
+        <p class="landing-subtitle" data-i18n="landingSubtitle">
+          Estimate materials, costs and compare contractor offers professionally.
+        </p>
+      </div>
+
+      <div class="cards-row">
+        <button class="building-card" type="button" data-building-type="floorAddition">
+          <span class="card-icon">🏗️</span>
+          <span class="card-title" data-i18n="cardFloorAdditionTitle">Add a Floor</span>
+          <span class="card-desc" data-i18n="cardFloorAdditionDesc">
+            Continue building an existing structure
+          </span>
+        </button>
+
+        <button class="building-card" type="button" data-building-type="villa">
+          <span class="card-icon">🏡</span>
+          <span class="card-title" data-i18n="cardVillaTitle">Villa</span>
+          <span class="card-desc" data-i18n="cardVillaDesc">
+            Independent villa, ground-up construction
+          </span>
+        </button>
+
+        <button class="building-card" type="button" data-building-type="fullBuilding">
+          <span class="card-icon">🏢</span>
+          <span class="card-title" data-i18n="cardFullBuildingTitle">Full Building</span>
+          <span class="card-desc" data-i18n="cardFullBuildingDesc">
+            Multi-floor residential building
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 3) Wizard — أقسام تنزل تدريجياً (Scroll-reveal)              -->
+    <!--    محتواها رح نبنيه بالخطوة الجاية                            -->
+    <!-- ============================================================ -->
+    <main id="wizard-root" class="hidden"></main>
+
+    <!-- صفحة النتائج -->
+    <section id="results-root" class="hidden"></section>
+
+    <!-- هان اللينكات عشان jspdf.umd.min.js / html2canvas.min.js موجودين في vendor   -->
+    <script src="./vendor/jspdf.umd.min.js"></script>
+    <script src="./vendor/html2canvas.min.js"></script>
+
+
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
